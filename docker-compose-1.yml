@@ -1,0 +1,32 @@
+# docker-compose.yml
+
+services:
+  windows:
+    image: dockurr/windows
+    container_name: windows
+    environment:
+      # VERSION: "win10"
+      
+      # Obtenha o link aqui ---> https://msdl.gravesoft.dev/#2618
+      VERSION: "<COLE O LINK AQUI>"
+      
+      RAM_SIZE: "8G"
+      DISK_SIZE: "30G"
+      DISK2_SIZE: "64G"
+      CPU_CORES: "2"
+      LANGUAGE: "Portuguese"
+      REGION: "en-001"
+      KEYBOARD: "pt-BR"
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
+    stop_grace_period: 2m
+    volumes:
+      - ./data:/storage
+      # - /tmp/windows:/storage
+      - /tmp/windowsdisk2:/storage2
